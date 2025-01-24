@@ -15,7 +15,7 @@ Para o servidor da aplicação, foi utilizado uma arquitetura próxima do clean 
 
 **Front-end:** React, Redux, TailwindCSS
 
-**Back-end:** PHP, PHP UNIT.
+**Back-end:** PHP, PHPUnit.
 
 
 ## Funcionalidades
