@@ -2,12 +2,10 @@
 
 namespace App\Core;
 
-class Request {
-    public static function get($key, $default = null) {
-        return $_GET[$key] ?? $default;
-    }
-
-    public static function post($key, $default = null) {
-        return $_POST[$key] ?? $default;
+class Request
+{
+    public static function getBody()
+    {
+        return json_decode(file_get_contents('php://input'), true);
     }
 }

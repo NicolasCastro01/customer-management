@@ -8,19 +8,15 @@ use App\Providers\AppServiceProvider;
 use App\Controllers\UserController;
 use App\Core\Router;
 
-// Container de serviços
 $container = [];
 
-// Registrar o provedor
 $provider = new AppServiceProvider($container);
 $provider->register();
 $provider->boot();
 
-// Acessar o serviço através do container
 $userService = $container['user_service']();
 
-// Definição de rotas
-Router::get('/users', [new UserController($userService), 'index']);
+Router::get('/customers', [new UserController($userService), 'list']);
+Router::post('/customers', [new UserController($userService), 'create']);
 
-// Executar o roteador
 Router::dispatch();
