@@ -1,0 +1,47 @@
+version: '3.8'
+
+services:
+  database:
+    image: mysql:latest
+    container_name: customer-management-database
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: kabum
+      MYSQL_USER: kabum
+      MYSQL_PASSWORD: kabum
+    ports:
+      - "3306:3306"
+    networks:
+      - network_kabum
+
+  server:
+    build: ./back
+    container_name: customer-management-server
+    working_dir: /app
+    volumes:
+      - ./back:/app
+    ports:
+      - "8000:8000"
+    networks:
+      - network_kabum
+    depends_on:
+      - database
+    command: php -S 0.0.0.0:8000 -t /app
+
+  client:
+    image: node
+    container_name: customer-management-client
+    working_dir: /app
+    volumes:
+      - ./front:/app
+    ports:
+      - "3000:3000"
+    networks:
+      - network_kabum
+    depends_on:
+      - server
+    command: npm start
+
+networks:
+  network_kabum:
