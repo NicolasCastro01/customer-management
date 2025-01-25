@@ -2,7 +2,9 @@
 
 namespace App\Providers;
 
+use App\Repositories\InMemory\CustomerRepositoryInMemory;
 use App\Repositories\InMemory\UserRepositoryInMemory;
+use App\Services\CustomerService;
 use App\Services\UserService;
 
 class AppServiceProvider extends ServiceProvider
@@ -14,6 +16,12 @@ class AppServiceProvider extends ServiceProvider
             $userRepository = new UserRepositoryInMemory();
 
             return new UserService($userRepository);
+        };
+
+        $this->container['customer_service'] = function () {
+            $customerRepository = new CustomerRepositoryInMemory();
+
+            return new CustomerService($customerRepository);
         };
     }
 

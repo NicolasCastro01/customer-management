@@ -31,7 +31,7 @@ class CustomerRepositoryInMemory implements CustomerRepositoryContract
     public function create(Customer $entity): void
     {
         $this->existsCustomer($entity);
-
+        
         $this->customers[] = $entity;
     }
 

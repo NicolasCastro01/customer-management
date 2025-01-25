@@ -5,6 +5,8 @@ namespace App\Services;
 use App\Contracts\Repositories\CustomerRepositoryContract;
 use App\Contracts\Services\CustomerServiceContract;
 use App\DTOs\Customer\CreateCustomerDTO;
+use App\DTOs\Customer\CreateCustomerPropsDTO;
+use App\Entities\Customer;
 
 class CustomerService implements CustomerServiceContract
 {
@@ -17,11 +19,20 @@ class CustomerService implements CustomerServiceContract
 
     public function getAll()
     {
-        // Implement getAll method
+        return $this->repository->all();
     }
 
     public function create(CreateCustomerDTO $dto): void
     {
-        // Implement create method
+        $props = new CreateCustomerPropsDTO(
+            $dto->name,
+            $dto->birth_date,
+            $dto->phone,
+            $dto->rg,
+            $dto->cpf
+        );
+        $customer = Customer::create($props);
+
+        $this->repository->create($customer);
     }
 }

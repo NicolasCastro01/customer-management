@@ -42,6 +42,18 @@ Rode o projeto utilizando o docker compose.
   docker compose up -d
 ```
 
+Instale as dependências
+
+```bash
+  docker exec -it customer-management-server bash -c "composer install"
+```
+
+Limpe o cache
+
+```bash
+  docker exec -it customer-management-server bash -c "composer dump-autoload"
+```
+
 Após isso, o servidor estará rodando em http://localhost:8000.
 ## Documentação da API
 
@@ -65,4 +77,16 @@ Após isso, o servidor estará rodando em http://localhost:8000.
 | `rg`      | `string` | **Obrigatório**. O RG do cliente que você quer cadastrar. |
 | `data_nascimento`      | `string` | **Obrigatório**. A data de nascimento do cliente que você quer cadastrar. |
 
+
+
+## Aprendizados
+
+O framework ajuda muito! Como tive que fazer utilizando o PHP puro, muitos conceitos que passam batidos na utilização do framework tiveram que ser aplicados. 
+
+Por mais que não consegui entregar em tempo hábil devido contra tempos, foi um desafio interessante.
+
+
+## Autores
+
+- [@NicolasCastro01](https://www.github.com/nicolascastro01)
 
